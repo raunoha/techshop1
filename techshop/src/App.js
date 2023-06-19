@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/global/HomePage';
 import FirstPage from './pages/global/FirstPage';
@@ -12,11 +12,49 @@ import EditProduct from './pages/admin/EditProduct';
 import MaintainProduct from './pages/admin/MaintainProduct';
 import MaintainCategories from './pages/admin/MaintainCategories';
 import MaintainShops from './pages/admin/MaintainShops';
+import Signup from './pages/auth/Signup';
+import Login from './pages/auth/Login';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { useTranslation } from 'react-i18next';
+
+
 
 
 function App() {
+  const { t, i18n } = useTranslation();
+
+const langToEn = ()=> {
+  i18n.changeLanguage("en");
+  localStorage.setItem("language","en");
+}
+const langToEe = ()=> {
+  i18n.changeLanguage("ee");
+  localStorage.setItem("language","en");
+}
+
   return (
     <div className="App">
+
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand as={Link} to="/homepage">SuperTechShop</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/admin">{t("admin")}</Nav.Link>
+            <Nav.Link as={Link} to="/contact">{t("contact")}</Nav.Link>
+            <Nav.Link as={Link} to="/shops">{t("shops")}</Nav.Link>
+          </Nav>
+          <Nav>
+            <button onClick={langToEn}>English</button>
+            <button onClick={langToEe}>Eesti</button>
+          <Nav.Link as={Link} to="/cart">{t("cart")}</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
       
       <Routes>
         <Route path="" element={<FirstPage />} />
@@ -31,6 +69,8 @@ function App() {
         <Route path="admin/maintain-product" element={<MaintainProduct />} />
         <Route path="admin/maintain-categories" element={<MaintainCategories />} />
         <Route path="admin/maintain-shop" element={<MaintainShops />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
         </Routes>
     </div>
   );

@@ -8,9 +8,9 @@ function FirstPage() {
       <h1>Welcome to New supercool webshop</h1>
       <div className="moving-text-container">
         <span className="moving-text">
-          <span className="moving-text-item">Good Price,</span>&nbsp;
-          <span className="moving-text-item">Fast delivery,</span>&nbsp;
-          <span className="moving-text-item">Famous Brands</span>&nbsp;
+          <span className="moving-text-item">Good Price,</span>{' '}
+          <span className="moving-text-item">Fast delivery,</span>{' '}
+          <span className="moving-text-item">Famous Brands</span>{' '}
         </span>
       </div>
       <div className="button1">
