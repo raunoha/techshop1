@@ -36,7 +36,6 @@ const langToEe = ()=> {
 
   return (
     <div className="App">
-
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand as={Link} to="/homepage">SuperTechShop</Navbar.Brand>
@@ -48,9 +47,9 @@ const langToEe = ()=> {
             <Nav.Link as={Link} to="/shops">{t("shops")}</Nav.Link>
           </Nav>
           <Nav>
-            <button onClick={langToEn}>English</button>
-            <button onClick={langToEe}>Eesti</button>
-          <Nav.Link as={Link} to="/cart">{t("cart")}</Nav.Link>
+             <img className='lang' src="/united-kingdom.png" onClick={langToEn} alt="" />
+             <img className='lang' src="/estonia.png" onClick={langToEe} alt="" />
+            <Nav.Link as={Link} to="/cart">{t("cart")}</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
