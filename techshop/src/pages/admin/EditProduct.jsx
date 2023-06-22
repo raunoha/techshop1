@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import productsFromFile from "../../data/products.json";
 import Button from 'react-bootstrap/esm/Button';
@@ -19,7 +19,7 @@ const activeRef = useRef();
 const brandRef = useRef();
 const navigate = useNavigate();
 //const navigate = useNavigate();
-//const [idUnique, setIdUnique] = useState(true);
+const [idUnique, setIdUnique] = useState(true);
 //const [categories, setCategories] = useState([]);
 //const [loading, setLoading] = useState(true);
 
@@ -37,14 +37,24 @@ const changeProduct = () => {
   productsFromFile[index]= updateProduct
   navigate("/admin/maintain-products");
 } 
+
+const checkIdUniqueness = () => {
+const index =  productsFromFile.findIndex(element => element.id === Number(idRef.current.value));
+ if (index === -1) {
+  setIdUnique(true);
+ } else {
+  setIdUnique(false);
+ }
+}
  
   return (
     <div>
      {/* <div>ID:{id}</div>
       <div>{found.name}</div>
   <div>{index}</div>*/}
+  {idUnique === false &&  <div>Inserted ID is not unique!</div>} 
   <label>ID</label>
-  <input ref={idRef} type="number"defaultValue={found.id} /> <br />
+  <input onChange={checkIdUniqueness} ref={idRef} type="number"defaultValue={found.id} /> <br />
   <label>Name</label>
   <input ref={nameRef} type="text"defaultValue={found.name} /> <br />
   <label>Price</label>
@@ -59,7 +69,7 @@ const changeProduct = () => {
   <input ref={brandRef} type="text"defaultChecked={found.brand} /> <br />
   <label>Active</label>
   <input ref={activeRef} type="checkbox"defaultValue={found.active} /> <br />
-   <Button onClick={changeProduct}>Change</Button>
+   <Button disabled={idUnique === false} onClick={changeProduct}>Change</Button>
     </div>
   )
 }

@@ -5,7 +5,7 @@ import FirstPage from './pages/global/FirstPage';
 import Cart from './pages/global/Cart';
 import SingelProduct from './pages/global/SingelProduct';
 import Shops from './pages/global/Shops';
-import ContactUs from './pages/global/ContactUs';
+import {ContactUs }from './pages/global/ContactUs';
 import AdminHome from './pages/admin/AdminHome';
 import AddProduct from './pages/admin/AddProduct';
 import EditProduct from './pages/admin/EditProduct';
@@ -38,7 +38,7 @@ const langToEe = ()=> {
     <div className="App">
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand as={Link} to="/homepage">SuperTechShop</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/homepage">SuperPawnTechShop</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -60,7 +60,7 @@ const langToEe = ()=> {
         <Route path="homepage" element={<HomePage />} />
         <Route path="cart" element={<Cart/>} />
         <Route path="shops" element={<Shops />} />
-        <Route path="product" element={<SingelProduct />} />
+        <Route path="product/:id" element={<SingelProduct />} />
         <Route path="contact" element={ <ContactUs/>} />
         <Route path="admin" element={<AdminHome />} />
         <Route path="admin/add-product" element={<AddProduct/>} />
