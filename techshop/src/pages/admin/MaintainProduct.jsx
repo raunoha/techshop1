@@ -21,7 +21,7 @@ const searchFromProducts = () => {
   return (
     <div>
       <input onChange={searchFromProducts} ref={searchedRef} type="text" />
-      <span>{products.length} pcs</span>
+      <span>{products.length} pcs</span> <br />
       <tabel>
         <thead>
           <tr>

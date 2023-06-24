@@ -34,11 +34,24 @@ const add = () =>{
   }
 };
 
+const [idUnique, setIdUnique] = useState(true);
+
+const checkIdUniqueness = () => {
+const index = productsFromFile.findIndex(element => element.id === Number(idRef.current.value));
+if (index === -1) {
+setIdUnique(true);
+setMessage("");
+} else {
+setIdUnique(false);
+setMessage("Wrong ID");
+}
+}
+
   return (
     <div>
       <div>{message} </div>
       <label>New Id</label> <br />
-      <input ref={idRef} type="number" /> <br />
+      <input onChange={checkIdUniqueness} ref={idRef} type="number" /> <br />
       <label>New Name</label> <br />
       <input ref={nameRef} type="text" /> <br />
       <label>New Price</label> <br />
@@ -51,7 +64,7 @@ const add = () =>{
       <input ref={categoryRef} type="text" /> <br />
       <label>Active</label> <br />
        <input ref={activeRef} type="checkbox"  /> <br />
-       <Button onClick={add} >{t('Add Product')}</Button>
+       <Button onClick={add} disabled={idUnique === false}>{t('Add Product')}</Button>
        <ToastContainer 
        position="bottom-right"
        />

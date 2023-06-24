@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import productsFromFile from "../../data/products.json";
-import cartFromFile from "../../data/cart.json";
+//import cartFromFile from "../../data/cart.json";
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
 import "../../css/HomePage.css";
@@ -52,6 +52,11 @@ const filterByCategoryUsbdrive = () => {
   product.category === "usb drive");
   setProducts(result)
 }
+const filterByCategoryRobot= () => {
+  const result = productsFromFile.filter((product) => 
+  product.category === "robot vacuum");
+  setProducts(result)
+}
 const filterByCategoryOthers = () => {
   const categoriesToFilter = ["fragrances", "skincare", "groceries", "home-decoration"];
 
@@ -62,9 +67,17 @@ const filterByCategoryOthers = () => {
   setProducts(result);
 }
 
-const add = (product) => {
-  cartFromFile.push(product);
-  toast.success("Product added!");
+const add = (productClicked) => {
+  const cartLS = JSON.parse(localStorage.getItem("carts")) || [];
+  const index = cartLS.findIndex(element => 
+    element.product.id === productClicked.id);
+  if (index >= 0) {
+    cartLS[index].quantity++;
+  } else {
+    cartLS.push({ "product": productClicked, "quantity": 1});
+  }
+  localStorage.setItem("carts", JSON.stringify(cartLS) );
+    toast.success("Product added!");
 }
 
   return (
@@ -78,6 +91,7 @@ const add = (product) => {
       <button onClick= {filterByCategoryMemorybank}>{t('Category Memory bank')}</button>
       <button onClick= {filterByCategoryJeans}>{t('Category Jeans')}</button>
       <button onClick= {filterByCategoryUsbdrive}>{t('Category Usb drive')}</button>
+      <button onClick= {filterByCategoryRobot}>{t('Category Robot vacuum')}</button>
       <button onClick= {filterByCategoryOthers}>{t('Category Others')}</button>
      <div>{products.length} </div>
       <div className='products'>

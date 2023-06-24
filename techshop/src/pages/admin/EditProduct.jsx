@@ -39,6 +39,10 @@ const changeProduct = () => {
 } 
 
 const checkIdUniqueness = () => {
+  if (idRef.current.value === id) {
+    setIdUnique(true);
+return;
+  }
 const index =  productsFromFile.findIndex(element => element.id === Number(idRef.current.value));
  if (index === -1) {
   setIdUnique(true);
@@ -53,6 +57,7 @@ const index =  productsFromFile.findIndex(element => element.id === Number(idRef
       <div>{found.name}</div>
   <div>{index}</div>*/}
   {idUnique === false &&  <div>Inserted ID is not unique!</div>} 
+  <br />
   <label>ID</label>
   <input onChange={checkIdUniqueness} ref={idRef} type="number"defaultValue={found.id} /> <br />
   <label>Name</label>

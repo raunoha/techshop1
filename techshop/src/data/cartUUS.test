@@ -1,0 +1,26 @@
+[
+    {
+        "kogus":2,
+        "toode":{
+        "id": 59043224,
+        "image": "https://i.ebayimg.com/thumbs/images/g/oqgAAOSw4YtjUali/s-l225.webp",
+        "name": "Roborock S7 Wi-Fi",
+        "price": 425,
+        "description": "Roborock S7 Wi-Fi Robot Vacuum and Mop with Automatic Empty Base",
+        "category": "robot vacuum",
+        "active": true 
+    }
+    },
+    {
+        "kogus":2,
+        "toode":{
+        "id": 60273761,
+        "image": "https://i.ebayimg.com/thumbs/images/g/fygAAOSwULxjtWjt/s-l225.webp",
+        "name": "Men's LEE Stretch",
+        "price": 5.99,
+        "description": "Men's LEE Stretch Skinny/Slim Jeans , size 33W 30L",
+        "category": "jeans",
+        "active": true 
+    }
+    }
+]

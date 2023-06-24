@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next';
 
 
 
+
 function App() {
   const { t, i18n } = useTranslation();
 
@@ -49,7 +50,8 @@ const langToEe = ()=> {
           <Nav>
              <img className='lang' src="/united-kingdom.png" onClick={langToEn} alt="" />
              <img className='lang' src="/estonia.png" onClick={langToEe} alt="" />
-            <Nav.Link as={Link} to="/cart">{t("cart")}</Nav.Link>
+            <Nav.Link as={Link} to="/cart">
+            <img className='cart' src="/shoppingcart.png" alt="Cart" /> {t("")}</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

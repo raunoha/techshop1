@@ -11,10 +11,16 @@ function SingelProduct() {
   const result = productsFromFile.find((product) => product.id === Number(id));
 
 
-  const addToCart = (products) => {
-    cartFromFile.push(result);
+  const addToCart = (productClicked) => {
+    const index = cartFromFile.findIndex(element => element.product.id === productClicked.id);
+   if (index >= 0) {
+    cartFromFile[index].quantity++;
+   } else {
+    cartFromFile.push({"product":productClicked,"quantity": 1})
+   }
+    // cartFromFile.push(result);
     //setProducts(productsFromFile.slice());
-    toast.success("Item added cart", {
+    toast.success(t("Item added cart"), {
     position: toast.POSITION.BOTTOM_RIGHT,
     });
   }
@@ -22,11 +28,11 @@ function SingelProduct() {
     <div>
       <div>ID: {id} </div>
       <div>Name:{result.name} </div>
-      <div>Price: {result.price} €</div>
+      <div>Price: {result.price} €</div> 
       <div>Description: {result.description}</div>
       <img  src={result.image} alt=""  /> 
       <br /> <br />
-      <button onClick={() => addToCart()}>{t('Add to cart')}</button>
+      <button onClick={() => addToCart(result)}>{t('Add to cart')}</button>
       <ToastContainer />
     </div>
   )

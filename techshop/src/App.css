@@ -27,3 +27,27 @@ th,td {
   width: 100px;
   height: 100px;
 }
+.cart {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  filter: invert(100%);
+}
+.cart:hover {
+  cursor:pointer;
+  opacity: 0,7;
+}
+.cart:active {
+  padding: 1px;
+}
+.shoppingcart3-con{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55vh;
+}
+
+
