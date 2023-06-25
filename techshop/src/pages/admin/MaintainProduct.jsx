@@ -2,8 +2,9 @@ import React, { useRef, useState } from 'react';
 import productsFromFile from "../../data/products.json";
 import { Button }from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import "../../css/MaintainProducts.css";
 
-function MaintainProducts() {
+function MaintainProduct() {
 const [products, setProducts] = useState(productsFromFile);
 const searchedRef = useRef(); 
 //const allProducts = [ ]
@@ -36,8 +37,9 @@ const searchFromProducts = () => {
          </thead>
         <tbody>
         {products.map((product, index)=> 
-        <tr key={product.id}>
-         <td> <img className='image2' src={product.image} alt="" /></td>
+        <tr key={product.id} className={product.active === true ? 'active' : "inactive" }>
+         <td> <img className={product.active === true ? 'image2' : "image2-blurred"} 
+         src={product.image} alt="" /></td>
          <td>{product.id} </td>         
          <td>{product.description} </td>
          <td>{product.price} </td>       
@@ -55,4 +57,4 @@ const searchFromProducts = () => {
   )
 }
 
-export default MaintainProducts;
+export default MaintainProduct;

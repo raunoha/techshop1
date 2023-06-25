@@ -17,9 +17,25 @@ const activeRef = useRef();
 const idRef = useRef();
 
 const add = () =>{
+  if (idRef.current.value === "") {
+    setMessage("Product can t add empty id");
+    return;
+  }
   if (nameRef.current.value === "") {
     setMessage("Product can t add empty name");
-  } else {
+    return;
+  }
+  if (priceRef.current.value === "") {
+    setMessage("Product can t add empty price");
+    return;
+  }
+  if (Number(priceRef.current.value) <= 0) {
+    setMessage("Product can t add empty price");
+    return;
+  }
+ // if (nameRef.current.value === "") {
+   // setMessage("Product can t add empty name");
+  //} else {
     setMessage("Product add: " + nameRef.current.value); 
     productsFromFile.push({
       "id":Number (idRef.current.value),
@@ -31,20 +47,20 @@ const add = () =>{
       "active": activeRef.current.checked
     } );
     toast.success("New product added")
-  }
+  //}
 };
 
 const [idUnique, setIdUnique] = useState(true);
 
 const checkIdUniqueness = () => {
-const index = productsFromFile.findIndex(element => element.id === Number(idRef.current.value));
-if (index === -1) {
-setIdUnique(true);
-setMessage("");
-} else {
-setIdUnique(false);
-setMessage("Wrong ID");
-}
+  const index = productsFromFile.findIndex(element => element.id === Number(idRef.current.value));
+  if (index === -1) {
+  setIdUnique(true);
+  setMessage("");
+ } else {
+  setIdUnique(false);
+  setMessage("Wrong ID");
+ }
 }
 
   return (

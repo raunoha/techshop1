@@ -69,7 +69,7 @@ const langToEe = ()=> {
         <Route path="admin/edit-product/:id" element={<EditProduct />} />
         <Route path="admin/maintain-product" element={<MaintainProduct />} />
         <Route path="admin/maintain-categories" element={<MaintainCategories />} />
-        <Route path="admin/maintain-shop" element={<MaintainShops />} />
+        <Route path="admin/maintain-shops" element={<MaintainShops />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         </Routes>
@@ -78,3 +78,4 @@ const langToEe = ()=> {
 }
 
 export default App;
+//error 25.05 videos kus kasutati homepage mitteaktiivne siis ära näita ei tööta !!!

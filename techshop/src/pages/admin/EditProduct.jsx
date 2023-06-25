@@ -16,7 +16,7 @@ const descriptionRef = useRef();
 const imageRef = useRef();
 const categoryRef = useRef();
 const activeRef = useRef();
-const brandRef = useRef();
+//const brandRef = useRef();
 const navigate = useNavigate();
 //const navigate = useNavigate();
 const [idUnique, setIdUnique] = useState(true);
@@ -24,6 +24,18 @@ const [idUnique, setIdUnique] = useState(true);
 //const [loading, setLoading] = useState(true);
 
 const changeProduct = () => {
+  if (idRef.current.value === "") {
+    return;
+      }
+  if (nameRef.current.value === "") {
+return;
+  }
+  if (priceRef.current.value === "") { 
+  return;
+}
+if (Number(priceRef.current.value) <=0 ) {
+  return;
+}
   const updateProduct={
     "id":Number (idRef.current.value),
      "name":nameRef.current.value,
@@ -32,10 +44,10 @@ const changeProduct = () => {
      "description":descriptionRef.current.value,
      "category":categoryRef.current.value,
      "active":activeRef.current.checked,
-     "brand":brandRef.current.value,
+     //"brand":brandRef.current.value,
   }
   productsFromFile[index]= updateProduct
-  navigate("/admin/maintain-products");
+  navigate("/admin/maintain-product");
 } 
 
 const checkIdUniqueness = () => {
@@ -63,15 +75,15 @@ const index =  productsFromFile.findIndex(element => element.id === Number(idRef
   <label>Name</label>
   <input ref={nameRef} type="text"defaultValue={found.name} /> <br />
   <label>Price</label>
-  <input ref={priceRef} type="number"defaultValue={found.image} /> <br />
+  <input ref={priceRef} type="number"defaultValue={found.price} /> <br />
   <label>Description</label>
   <input ref={descriptionRef} type="text"defaultValue={found.description} /> <br />
   <label>Image</label>
   <input ref={imageRef} type="text"defaultValue={found.image} /> <br />
   <label>Category</label>
   <input ref={categoryRef} type="text"defaultValue={found.category} /> <br />
-  <label>Brand</label>
-  <input ref={brandRef} type="text"defaultChecked={found.brand} /> <br />
+  {/*<label>Brand</label>
+  <input ref={brandRef} type="text"defaultChecked={found.brand} /> <br /> */}
   <label>Active</label>
   <input ref={activeRef} type="checkbox"defaultValue={found.active} /> <br />
    <Button disabled={idUnique === false} onClick={changeProduct}>Change</Button>

@@ -27,36 +27,42 @@ const sortPriceDesc = () => {
   products.sort((a,b) => b.price - a.price);
   setProducts(products.slice());
 } 
-const filterByCategoryLaptops = () => {
+/*const filterByCategoryLaptops = () => {
   const result = productsFromFile.filter((product) =>
    product.category.includes("laptops"));
-  setProducts(result)
+  setProducts(result);
 }
 const filterByCategoryMemorybank = () => {
   const result = productsFromFile.filter((product) => 
   product.category === "memory bank");
-  setProducts(result)
+  setProducts(result);
 }
 const filterByCategorySmartphones = () => {
   const result = productsFromFile.filter((product) => 
   product.category === "smartphones");
-  setProducts(result)
+  setProducts(result);
 }
 const filterByCategoryJeans = () => {
   const result = productsFromFile.filter((product) =>
   product.category === "jeans");
-  setProducts(result)
+  setProducts(result);
 }
 const filterByCategoryUsbdrive = () => {
   const result = productsFromFile.filter((product) => 
   product.category === "usb drive");
-  setProducts(result)
+  setProducts(result);
 }
 const filterByCategoryRobot= () => {
   const result = productsFromFile.filter((product) => 
   product.category === "robot vacuum");
-  setProducts(result)
+  setProducts(result);
+} */
+const filterByCategory = (categoryClicked) => {
+  const result = productsFromFile.filter((product) => 
+  product.category === categoryClicked);
+  setProducts(result);
 }
+
 const filterByCategoryOthers = () => {
   const categoriesToFilter = ["fragrances", "skincare", "groceries", "home-decoration"];
 
@@ -77,7 +83,7 @@ const add = (productClicked) => {
     cartLS.push({ "product": productClicked, "quantity": 1});
   }
   localStorage.setItem("carts", JSON.stringify(cartLS) );
-    toast.success("Product added!");
+    toast.success(t("Product added!"));
 }
 
   return (
@@ -86,26 +92,25 @@ const add = (productClicked) => {
       <button onClick= {ZA}>{t('Sort Z-A')}</button>
       <button onClick= {sortPriceAsc}>{t('Price Ascending')}</button>
       <button onClick= {sortPriceDesc}>{t('Price Descending')}</button>
-      <button onClick= {filterByCategorySmartphones}>{t('Category Smartphones')}</button>
-      <button onClick= {filterByCategoryLaptops}>{t('Category Laptops')}</button>
-      <button onClick= {filterByCategoryMemorybank}>{t('Category Memory bank')}</button>
-      <button onClick= {filterByCategoryJeans}>{t('Category Jeans')}</button>
-      <button onClick= {filterByCategoryUsbdrive}>{t('Category Usb drive')}</button>
-      <button onClick= {filterByCategoryRobot}>{t('Category Robot vacuum')}</button>
+      <button onClick= {() => filterByCategory("smartphones") }>{t('Category Smartphones')}</button>
+      <button onClick= {() => filterByCategory("laptops")  }>{t('Category Laptops')}</button>
+      <button onClick= {() => filterByCategory("memory bank") }>{t('Category Memory bank')}</button>
+      <button onClick= {() => filterByCategory("jeans") }>{t('Category Jeans')}</button>
+      <button onClick= {() => filterByCategory("usb drive") }>{t('Category Usb drive')}</button>
+      <button onClick= {() => filterByCategory("robot vacuum") }>{t('Category Robot vacuum')}</button>
       <button onClick= {filterByCategoryOthers}>{t('Category Others')}</button>
-     <div>{products.length} </div>
+     <div>{products.length} pcs</div>
       <div className='products'>
-      {products.map(product => 
+      {products.filter(e => e.active === true).map((product, id) => (
         <div key={product.id} className='product'>
           <Link to={"/product/" + product.id}>
           <img src={product.image} alt="" />
            <div className='name'>{product.name} </div>          
           <div>{product.price} €</div>   
-          </Link>              
-                         
-          <button onClick={() => add(product) }>Add to cart</button>
+          </Link>       
+          <button onClick={() => add(product) }>{t("Add to cart")}</button>
       </div>
-        )}
+        ))}
     </div>
     <ToastContainer position="bottom-right"/> 
     </div>

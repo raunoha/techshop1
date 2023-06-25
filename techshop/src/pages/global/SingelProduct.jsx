@@ -20,7 +20,7 @@ function SingelProduct() {
    }
     // cartFromFile.push(result);
     //setProducts(productsFromFile.slice());
-    toast.success(t("Item added cart"), {
+    toast.success(t("Item added cart!"), {
     position: toast.POSITION.BOTTOM_RIGHT,
     });
   }
