@@ -28,7 +28,7 @@ const resources = {
         "maintain-categories": "Halda kategooriaid",
        "maintain-shops": "Halda poode",
        "add-product": "Lisa toode",
-       "maintain-product": "Halda tooteid",
+       "maintain-products": "Halda tooteid",
        "Add to cart": "Lisa ostukorvi",
        "Category Others": " Teised tooted",
        'Sort A-Z' : "A-Z",
@@ -57,6 +57,18 @@ const resources = {
        "Add Product":"Lisa toode",
        "Product added!": "Toode Lisatud Ostukorvi!",
        'Item added cart!':"Lisatud Ostukorvi",
+       "New product added": "Uus tode lisatud",
+       'there-are': "On",
+       'items-in-the-cart':"toodet ostukorvis",
+       'remove-item':"Eemalda toode",
+       'total':"Kogusumma",
+       'shopping-cart-is-empty':"Ostukorv on tühi",
+       'add-products':"Lisa toode",
+       'empty-cart':"Tühjenda ostukorv",
+       'there-is':"Ostukorvis on",
+       "item-in-the-cart":"toodet",
+       
+
     }
   }
 };

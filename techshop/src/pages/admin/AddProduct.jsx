@@ -46,7 +46,7 @@ const add = () =>{
       "category": categoryRef.current.value,
       "active": activeRef.current.checked
     } );
-    toast.success("New product added")
+    toast.success(t("New product added"));
   //}
 };
 

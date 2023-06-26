@@ -26,13 +26,17 @@ import { useTranslation } from 'react-i18next';
 function App() {
   const { t, i18n } = useTranslation();
 
-const langToEn = ()=> {
+ /*const langToEn = ()=> {
   i18n.changeLanguage("en");
   localStorage.setItem("language","en");
 }
 const langToEe = ()=> {
   i18n.changeLanguage("ee");
   localStorage.setItem("language","en");
+}*/ 
+const langChange = (languageClicked)=> {
+  i18n.changeLanguage(languageClicked);
+  localStorage.setItem("language",languageClicked);
 }
 
   return (
@@ -48,8 +52,8 @@ const langToEe = ()=> {
             <Nav.Link as={Link} to="/shops">{t("shops")}</Nav.Link>
           </Nav>
           <Nav>
-             <img className='lang' src="/united-kingdom.png" onClick={langToEn} alt="" />
-             <img className='lang' src="/estonia.png" onClick={langToEe} alt="" />
+             <img className='lang' src="/united-kingdom.png" onClick={() => langChange("en")} alt="" />
+             <img className='lang' src="/estonia.png" onClick={() => langChange("ee")} alt="" />
             <Nav.Link as={Link} to="/cart">
             <img className='cart' src="/shoppingcart.png" alt="Cart" /> {t("")}</Nav.Link>
           </Nav>
@@ -79,3 +83,5 @@ const langToEe = ()=> {
 
 export default App;
 //error 25.05 videos kus kasutati homepage mitteaktiivne siis ära näita ei tööta !!!
+//kuidas tooteid lisada et jäävadki sinna isegi peale refreshi vajutust
+//Cart.css prügikasti märk jookseb euro märgi sisse
