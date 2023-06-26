@@ -67,6 +67,7 @@ const resources = {
        'empty-cart':"Tühjenda ostukorv",
        'there-is':"Ostukorvis on",
        "item-in-the-cart":"toodet",
+       "Deleted!":"Kustutatud",
        
 
     }

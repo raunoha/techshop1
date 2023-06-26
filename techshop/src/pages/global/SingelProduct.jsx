@@ -3,11 +3,13 @@ import productsFromFile from "../../data/products.json";
 import cartFromFile from "../../data/cart.json";
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
 function SingelProduct() {
   const { id } = useParams();
   const {t} = useTranslation();
- // const [products, setProducts] = useState(productsFromFile)
+ const [products, setProducts] = useState(productsFromFile)
+ const found = products.find(product => product.id === Number(id));
   const result = productsFromFile.find((product) => product.id === Number(id));
 
 
@@ -26,6 +28,16 @@ function SingelProduct() {
   }
   return (
     <div>
+       {found === undefined && (
+        <div>
+       <div>Can t find product!</div>
+       <img className="moving-icon" src="/not-found.png" alt="Icon 1" />
+       <img className="moving-icon" src="/error.png" alt="Icon 2" />
+      <img className="moving-icon" src="/wifi.png" alt="Icon 3" />
+       </div>
+)}
+ {found !== undefined &&
+      <div>
       <div>ID: {id} </div>
       <div>Name:{result.name} </div>
       <div>Price: {result.price} €</div> 
@@ -34,6 +46,7 @@ function SingelProduct() {
       <br /> <br />
       <button onClick={() => addToCart(result)}>{t('Add to cart')}</button>
       <ToastContainer />
+      </div>}
     </div>
   )
 }

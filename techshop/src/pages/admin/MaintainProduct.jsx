@@ -1,23 +1,51 @@
-import React, { useRef, useState } from 'react';
-import productsFromFile from "../../data/products.json";
+import React, { useEffect, useRef, useState } from 'react';
+//import productsFromFile from "../../data/products.json";
 import { Button }from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import "../../css/MaintainProducts.css";
+import config from "../../data/config.json";
+
 
 function MaintainProduct() {
-const [products, setProducts] = useState(productsFromFile);
+const [products, setProducts] = useState([]);
 const searchedRef = useRef(); 
+const [loading, setLoading] = useState(true);
 //const allProducts = [ ]
 
+useEffect(() => {
+  fetch(config.productsDbUrl)
+  .then(res => res.json())
+  .then(json => {
+    setProducts(json || [])
+    setLoading(false);
+  });
+}, []);
+
 const deleteProduct = (index)=> {
-   productsFromFile.splice(index,1)
-   setProducts(productsFromFile.slice())
+   products.splice(index,1)
+   setProducts(products.slice())
 }
 
 const searchFromProducts = () => {
-  const result = productsFromFile.filter(element => 
+  const result = products.filter(element => 
     element.name.includes(searchedRef.current.value));
   setProducts(result);
+}
+if (products.length === 0 ) {       //products.length === 0 oli ennem loading true
+  return (
+  <div>
+  <div>Loading...</div>
+  <img className='loading' src="/process.png" alt="Loading Icon" />
+  </div>
+  )
+}
+if (loading === true) {       
+  return (
+    <div>
+    <div>Loading...</div>
+    <img className='loading' src="/container-truck.png" alt="Loading Icon" />
+    </div>
+    )
 }
 
   return (

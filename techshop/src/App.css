@@ -47,5 +47,26 @@
   align-items: center;
   height: 55vh;
 }
+.moving-icon {
+  animation: moveIcon 2s infinite alternate;
+  width: 200px;
+  height: 200px;
+  
+}
 
+@keyframes moveIcon {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100px);
+  }
+}
 
+.loading {
+width: 350px;
+height: 300px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
