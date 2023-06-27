@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import styles from "../../css/Cart.module.css";
 import { CartSumContext } from '../../store/CartSumContext';
 import { ToastContainer, toast } from 'react-toastify';
+import Payment from '../../components/cart/Payment';
 
 
 
@@ -65,9 +66,7 @@ function Cart() {
     setCartSum("0.00");
   }
 
- 
-
-  const searchFromPMs = () => {
+   const searchFromPMs = () => {
 const result = dbparcelMachines.filter(pm =>
  pm.NAME.toLowerCase().replace("õ","o")
  .includes(searchedRef.current.value.toLowerCase().replace("õ","o")));
@@ -107,14 +106,16 @@ setParcelMachine(result);
 
      {cart.length > 0 && 
      <div>
-      <div>  {t('total')}: {calculateCartSum()} €.</div>
+      <div>  {t('Total')}: {calculateCartSum()} €.</div>
+      
       <input type="text" ref={searchedRef}  onChange={searchFromPMs}/>
         <select>
           {parcelMachines
           .filter(pm => pm.ZIP !== "96331")
           .filter(pm => pm.A0_NAME === "EE")
           .map(pm => <option key={pm.NAME}>{pm.NAME}</option>) } 
-          </select>
+          </select><br />
+          <Payment sum={calculateCartSum()} /> 
       </div>}
 
       {cart.length === 0 && (

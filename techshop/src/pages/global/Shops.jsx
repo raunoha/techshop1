@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import Map from '../../components/Map';
 import config from "../../data/config.json"
+import { useTranslation } from 'react-i18next';
 
 
 function Shops() {
   const [coordinaates, setCoordinates] = useState({lngLat: [58.9332, 25.0302], zoom: 7});
   const [shops, setShops] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch(config.shopsDbUrl)
@@ -16,7 +18,7 @@ function Shops() {
 
   return (
     <div>
-      <button onClick={() => setCoordinates({lngLat: [58.9332, 25.0302], zoom: 8})}>Kõik poed</button>
+      <button onClick={() => setCoordinates({lngLat: [58.9332, 25.0302], zoom: 7})}>{t("Kõik poed")}</button>
 <div>{shops.map(item => <div key={item.name}> <button onClick={()  => setCoordinates({lngLat: [item.lat, item.lng], zoom: 13})}>{item.name}</button> </div> )} 
 
    {/* <button onClick={() => setCoordinates({lngLat: [58.9332, 25.0302], zoom: 7})}>Kõik poed</button>

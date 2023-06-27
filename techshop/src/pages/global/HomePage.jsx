@@ -9,6 +9,7 @@ import config from "../../data/config.json";
 import SortButtons from '../../home/SortButtons';
 import { CartSumContext } from '../../store/CartSumContext';
 
+
 function HomePage() {
 const [products, setProducts] = useState([]);
 const [dbProducts, setDbProducts] = useState ([]); // oli prductsfromfile
@@ -32,21 +33,6 @@ useEffect(() => {
   .then(json => setCategories(json || []));
 }, []);
 
-
-const filterByCategory = (categoryClicked) => {  //Hiljem muutmine
-  const result = dbProducts.filter((product) => 
-  product.category === categoryClicked);
-  setProducts(result);
-}
-const filterByCategoryOthers = () => {
-  const categoriesToFilter = ["fragrances", "skincare", "groceries", "home-decoration"];
-  const result = products.filter((product) => 
-    categoriesToFilter.includes(product.category)
-  );
-
-  setProducts(result);
-}
-
 const add = (productClicked) => {
   const cartLS = JSON.parse(localStorage.getItem("carts")) || [];
   const index = cartLS.findIndex(element => 
@@ -63,7 +49,21 @@ const add = (productClicked) => {
     setCartSum(sum);
 };
 
-if (loading === true) {       //products.length === 0 oli ennem loading true
+const filterByCategory = (categoryClicked) => {  
+  const result = dbProducts.filter((product) => 
+  product.category === categoryClicked);
+  setProducts(result);
+}
+
+const filterByCategoryOthers = () => {
+  const categoriesToFilter = ["fragrances", "skincare", "groceries", "home-decoration"];
+  const result = products.filter((product) => 
+    categoriesToFilter.includes(product.category)
+  );
+  setProducts(result);
+}
+
+if (loading === true) {       
   return (
   <div>
   <div>Loading...</div>
@@ -83,9 +83,10 @@ if (loading === true) {       //products.length === 0 oli ennem loading true
       <button onClick= {() => filterByCategory("jeans") }>{t('Category Jeans')}</button>
       <button onClick= {() => filterByCategory("usb drive") }>{t('Category Usb drive')}</button>
       <button onClick= {() => filterByCategory("robot vacuum") }>{t('Category Robot vacuum')}</button>*/}
-  <button onClick= {filterByCategoryOthers}>{t('Category Others')}</button> 
-  {categories.map(category =>
-  <button key={category.name} onClick= {() => filterByCategory(category.name) }>
+  
+    <button onClick= {filterByCategoryOthers}>{t('Category Others')}</button> 
+    {categories.map(category =>
+    <button key={category.name} onClick= {() => filterByCategory(category.name) }>
     {category.name}</button>
     )}
      <div>{products.length} pcs</div>

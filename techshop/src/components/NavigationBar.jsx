@@ -50,7 +50,7 @@ function NavigationBar() {
            <Nav.Link as={Link} to="/login">{t("Logi sisse")}</Nav.Link> 
            <Nav.Link as={Link} to="/signup">{t("Registreeru")}</Nav.Link>
            </> }
-           {loggedIn === true && <button style={{ borderRadius:'80px' }} onClick={logout}>
+           {loggedIn === true && <button style={{ borderRadius:'50px' }} onClick={logout}>
              <img className='logout' src="logout.png" alt="Logout" /> </button>}
              <img className='lang' src="/united-kingdom.png" onClick={() => langChange("en")} alt="" />
              <img className='lang' src="/estonia.png" onClick={() => langChange("ee")} alt="" />
