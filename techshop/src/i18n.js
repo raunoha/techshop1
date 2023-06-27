@@ -16,6 +16,8 @@ const resources = {
        "add-product": "Add-product",
        "maintain-product": "Maintain-product ",
        'tk':"piece",
+       "Logi sisse":"Log in",
+       "Registreeru":"Sing up"
        
     }
   },
@@ -58,16 +60,17 @@ const resources = {
        "Product added!": "Toode Lisatud Ostukorvi!",
        'Item added cart!':"Lisatud Ostukorvi",
        "New product added": "Uus tode lisatud",
-       'there-are': "On",
-       'items-in-the-cart':"toodet ostukorvis",
+       'There are': "On",
+       'items in the cart':"toodet ostukorvis",
        'remove-item':"Eemalda toode",
        'total':"Kogusumma",
-       'shopping-cart-is-empty':"Ostukorv on tühi",
-       'add-products':"Lisa toode",
-       'empty-cart':"Tühjenda ostukorv",
-       'there-is':"Ostukorvis on",
-       "item-in-the-cart":"toodet",
+       'Shopping cart is empty':"Ostukorv on tühi",
+       'Add product':"Lisa toode",
+       'Empty cart':"Tühjenda ostukorv",
+       'There is':"Ostukorvis on",
+       'item in the cart':"toodet",
        "Deleted!":"Kustutatud",
+       
        
 
     }

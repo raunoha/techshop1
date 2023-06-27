@@ -1,30 +1,47 @@
 import { useParams } from 'react-router-dom';
-import productsFromFile from "../../data/products.json";
-import cartFromFile from "../../data/cart.json";
+//import productsFromFile from "../../data/products.json";
+//import cartFromFile from "../../data/cart.json";
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import config from "../../data/config.json";
+import { Spinner } from 'react-bootstrap';
 
 function SingelProduct() {
   const { id } = useParams();
   const {t} = useTranslation();
- const [products, setProducts] = useState(productsFromFile)
+ const [products, setProducts] = useState([])
  const found = products.find(product => product.id === Number(id));
-  const result = productsFromFile.find((product) => product.id === Number(id));
+  const result = products.find((product) => product.id === Number(id));
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    fetch(config.productsDbUrl)
+    .then(res => res.json())
+    .then(json => {
+      setProducts(json || []);  // 244
+      setLoading(false);
+    });
+  }, []);
 
   const addToCart = (productClicked) => {
-    const index = cartFromFile.findIndex(element => element.product.id === productClicked.id);
+    const cartLS =JSON.parse(localStorage.getItem("carts"))|| [];
+    const index = cartLS.findIndex(element => element.product.id === productClicked.id);
    if (index >= 0) {
-    cartFromFile[index].quantity++;
+    cartLS[index].quantity++;
    } else {
-    cartFromFile.push({"product":productClicked,"quantity": 1})
+    cartLS.push({"product":productClicked,"quantity": 1})
    }
+   localStorage.setItem ("carts", JSON.stringify(cartLS))
     // cartFromFile.push(result);
     //setProducts(productsFromFile.slice());
     toast.success(t("Item added cart!"), {
     position: toast.POSITION.BOTTOM_RIGHT,
     });
+  }
+  if (loading === true) {       //products.length === 0 oli ennem
+    return <div><Spinner />
+    <span>Loading...</span></div>
   }
   return (
     <div>

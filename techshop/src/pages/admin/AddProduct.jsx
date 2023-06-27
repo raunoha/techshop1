@@ -9,7 +9,7 @@ function AddProduct() {
 const {t} = useTranslation();
 const [message, setMessage] = useState("Add new product");
 const [products, setProducts] = useState ([]);
-
+const [idUnique, setIdUnique] = useState(true);
 const nameRef = useRef();
 const imageRef = useRef();
 const priceRef = useRef();
@@ -73,9 +73,8 @@ const add = () =>{
       categoryRef.current.value = "";
       activeRef.current.checked = false;
   //}
+fetch(config.productsDbUrl,  {"method": "PUT","body":JSON.stringify(products)});
 };
-
-const [idUnique, setIdUnique] = useState(true);
 
 const checkIdUniqueness = () => {
   const index = products.findIndex(element => element.id === Number(idRef.current.value));

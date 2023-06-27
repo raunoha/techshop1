@@ -1,28 +1,37 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 //import cartFromFile from "../../data/cart.json";
 import { useTranslation } from 'react-i18next';
 //import omnivaFromFile from "../../data/omniva.json"
-import "../../css/Cart.css";
+import styles from "../../css/Cart.module.css";
+import { CartSumContext } from '../../store/CartSumContext';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
 function Cart() {
   const { t } = useTranslation();
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem("carts")) || []);
+  const { setCartSum } = useContext(CartSumContext);
   const [parcelMachines, setParcelMachine] = useState([]);
+  const [dbparcelMachines, setDbParcelMachine] = useState([]);
   const searchedRef = useRef();
 
   useEffect(() => {
     fetch("https://www.omniva.ee/locations.json")
     .then(res => res.json())
-    .then(json => setParcelMachine(json))
+    .then(json => {
+      setParcelMachine(json || []);
+      setDbParcelMachine(json || []);
+    })
   }, []);
 
   const removeFromCart = (index) => {
     cart.splice(index, 1)
     setCart(cart.slice());
     localStorage.setItem("carts", JSON.stringify(cart));
+    toast.success("Cart is empty!");
+    setCartSum(calculateCartSum());
   }
 
   const decreaseQuantity = (index) => {
@@ -32,12 +41,14 @@ function Cart() {
     }
     setCart(cart.slice());
     localStorage.setItem("carts", JSON.stringify(cart));
+    setCartSum(calculateCartSum());
   }
 
   const increaseQuantity = (index) => {
     cart[index].quantity++;
     setCart(cart.slice());
     localStorage.setItem("carts", JSON.stringify(cart));
+    setCartSum(calculateCartSum());
   }
 
   const calculateCartSum = () => {
@@ -51,12 +62,13 @@ function Cart() {
     //setCart(cart.slice());
     setCart([]);
     localStorage.setItem("carts", JSON.stringify([]));
+    setCartSum("0.00");
   }
 
  
 
   const searchFromPMs = () => {
-const result = parcelMachines.filter(pm =>
+const result = dbparcelMachines.filter(pm =>
  pm.NAME.toLowerCase().replace("õ","o")
  .includes(searchedRef.current.value.toLowerCase().replace("õ","o")));
 setParcelMachine(result);
@@ -64,32 +76,32 @@ setParcelMachine(result);
 
   return (
     <div>
-      {cart.length !== 0 && <button onClick={emptyCart}>{t('empty-cart')}</button>}
+      {cart.length !== 0 && <button onClick={emptyCart}>{t('Empty cart')}</button>}
       {cart.length === 1 && (
       <div>
-        {t('there-is')} 1  {t('item-in-the-cart')}.
+        {t('There is')} 1  {t('item in the cart')}.
         </div>
         )}
       {cart.length >= 2 &&( 
       <div>
-        {t('there-are')} {cart.length}  {t('items-in-the-cart')}.
+        {t('There are')} {cart.length}  {t('items in the cart')}.
         </div>)}
       {cart.map((element, index) => (
-        <div className='cart-products' key={index}>
-          <img className="image" src={element.product.image} alt="" />
-          <div className='name'>{element.product.name}</div>
-          <div className='price'>{element.product.price} €</div>
-          <div className='quantity'>
-          <img className='button' onClick={() => decreaseQuantity(index)} src="/minus (1).png" alt="" />
+        <div className={styles.products} key={index}>
+          <img className={styles.image} src={element.product.image} alt="" />
+          <div className={styles.name}>{element.product.name}</div>
+          <div className={styles.price}>{element.product.price} €</div>
+          <div className={styles.quantity}>
+          <img className={styles.button} onClick={() => decreaseQuantity(index)} src="/minus (1).png" alt="" />
           <div >{element.quantity} pcs</div>
-          <img className='button' onClick={() => increaseQuantity(index)} src="/add.png" alt="" />
+          <img className={styles.button} onClick={() => increaseQuantity(index)} src="/add.png" alt="" />
           </div>
-           <div className='total'>
+           <div className={styles.total}>
           <span>{element.product.price * element.quantity}</span>
-          <img className='button' src="/euro-sign.png" alt="" />
+          <img className={styles.button} src="/euro-sign.png" alt="" />
            </div>
           {/* <div>{t('remove-item')}</div> */}
-          <img className='button' onClick={() => removeFromCart(index)} src="/bin.png" alt="" />
+          <img className={styles.button} onClick={() => removeFromCart(index)} src="/bin.png" alt="" />
         </div>
         ))}
 
@@ -107,13 +119,16 @@ setParcelMachine(result);
 
       {cart.length === 0 && (
       <div>
-        {t('shopping-cart-is-empty')}.  
-      <Link to="/homepage/">{t('add-products')}</Link> {" "}
+        {t('Shopping cart is empty')}.  
+      <Link to="/homepage/">{t('Add products')}</Link> {" "}
       <br />
        <div className='shoppingcart3-con'>
         <img src="shopping-cart (3).png" alt=""  /></div>
       </div>)}
       <br /> <br />
+      <ToastContainer 
+    position="bottom-right"
+    />
     </div>
   )
 }

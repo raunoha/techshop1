@@ -6,6 +6,7 @@ import config from "../../data/config.json";
 
 function EditProduct() {
 const { id } = useParams();
+const [products, setProducts] = useState([]);
 const found = products.find(product => product.id === Number(id));
 const index = products.findIndex( product => product.id === Number(id));
 
@@ -22,7 +23,7 @@ const navigate = useNavigate();
 const [idUnique, setIdUnique] = useState(true);
 const [categories, setCategories] = useState([]);
 const [loading, setLoading] = useState(true);
-const [products, setProducts] = useState([]);
+
 
 
 useEffect(() => {
@@ -63,7 +64,7 @@ if (Number(priceRef.current.value) <=0 ) {
      "active":activeRef.current.checked,
      //"brand":brandRef.current.value,
   }
-  products[index]= updateProduct
+  products[index]= updateProduct;
   fetch(config.productsDbUrl, {"method": "PUT","body":JSON.stringify(products)})
   .then(() => navigate("/admin/maintain-product"));
 

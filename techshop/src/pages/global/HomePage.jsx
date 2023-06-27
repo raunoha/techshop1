@@ -1,50 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 //import productsFromFile from "../../data/products.json";
 //import cartFromFile from "../../data/cart.json";
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
-import "../../css/HomePage.css";
+import styles from "../../css/HomePage.module.css";
 import { Link } from 'react-router-dom';
 import config from "../../data/config.json";
+import SortButtons from '../../home/SortButtons';
+import { CartSumContext } from '../../store/CartSumContext';
 
 function HomePage() {
-const [products, setProducts] = useState([]); // oli prductsfromfile
+const [products, setProducts] = useState([]);
+const [dbProducts, setDbProducts] = useState ([]); // oli prductsfromfile
 const { t } = useTranslation();
-const [categories, setCategories] = useState([])
+const [categories, setCategories] = useState([]);
 const [loading, setLoading] = useState(true);
+const { setCartSum } = useContext(CartSumContext)
+
 
 useEffect(() => {
   fetch(config.productsDbUrl)
   .then(res => res.json())
   .then(json => {
     setProducts(json || [])
+    setDbProducts(json || [])
     setLoading(false);
   });
-
 
   fetch(config.categoriesDbUrl)
   .then(res => res.json())
   .then(json => setCategories(json || []));
 }, []);
 
-const AZ = () => {
-  products.sort((a, b) => a.name.localeCompare(b.name));
-  setProducts(products.slice())
-}
-const ZA = () => {
-  products.sort((a, b) => b.name.localeCompare(a.name));
-  setProducts(products.slice())
-}
-const sortPriceAsc = () => {   
-  products.sort((a,b) => a.price - b.price);
-  setProducts(products.slice());
-}
-const sortPriceDesc = () => {  
-  products.sort((a,b) => b.price - a.price);
-  setProducts(products.slice());
-} 
+
 const filterByCategory = (categoryClicked) => {  //Hiljem muutmine
-  const result = products.filter((product) => 
+  const result = dbProducts.filter((product) => 
   product.category === categoryClicked);
   setProducts(result);
 }
@@ -68,6 +58,9 @@ const add = (productClicked) => {
   }
   localStorage.setItem("carts", JSON.stringify(cartLS) );
     toast.success(t("Product added!"));
+    let sum = 0;
+    cartLS.forEach((element) => (sum = sum + element.product.price *element.quantity));
+    setCartSum(sum);
 };
 
 if (loading === true) {       //products.length === 0 oli ennem loading true
@@ -80,10 +73,10 @@ if (loading === true) {       //products.length === 0 oli ennem loading true
 }
   return (
     <div>
-      <button onClick= {AZ}>{t('Sort A-Z')}</button>
-      <button onClick= {ZA}>{t('Sort Z-A')}</button>
-      <button onClick= {sortPriceAsc}>{t('Price Ascending')}</button>
-      <button onClick= {sortPriceDesc}>{t('Price Descending')}</button>
+     <SortButtons 
+     products={products}
+     setProducts={setProducts}
+     />
       {/* <button onClick= {() => filterByCategory("smartphones") }>{t('Category Smartphones')}</button>
       <button onClick= {() => filterByCategory("laptops")  }>{t('Category Laptops')}</button>
       <button onClick= {() => filterByCategory("memory bank") }>{t('Category Memory bank')}</button>
@@ -96,12 +89,12 @@ if (loading === true) {       //products.length === 0 oli ennem loading true
     {category.name}</button>
     )}
      <div>{products.length} pcs</div>
-      <div className='products'>
+      <div className={styles.products}>
       {products.filter(e => e.active === true).map((product, id) => (
-        <div key={product.id} className='product'>
+        <div key={product.id} className={styles.product}>
           <Link to={"/product/" + product.id}>
           <img src={product.image} alt="" />
-           <div className='name'>{product.name} </div>          
+           <div className={styles.name}>{product.name} </div>          
           <div>{product.price} €</div>   
           </Link>       
           <button onClick={() => add(product) }>{t("Add to cart")}</button>

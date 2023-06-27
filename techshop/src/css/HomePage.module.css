@@ -1,21 +1,21 @@
 .products{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px,1fr)) ;
-    }
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr)) ;
+}
     
-    .product {
-    border: 1px solid lightgray;
+.product {
+    border: 2px solid rgb(31, 28, 28);
     padding: 10px;
     text-align: center;
-    }
+}
     
-    .product img {
+.product img {
         width: 150px;
         height: 150px;
         border-radius: 5px;
-    }
+}
     
-    .name{
+.name{
         height: 45px;
-    }
+}
     

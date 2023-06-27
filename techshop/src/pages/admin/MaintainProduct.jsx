@@ -4,12 +4,15 @@ import { Button }from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import "../../css/MaintainProducts.css";
 import config from "../../data/config.json";
+import SortButtons from '../../home/SortButtons';
 
 
 function MaintainProduct() {
 const [products, setProducts] = useState([]);
+const [dbProducts, setDbProducts] = useState([]);
 const searchedRef = useRef(); 
 const [loading, setLoading] = useState(true);
+
 //const allProducts = [ ]
 
 useEffect(() => {
@@ -17,33 +20,38 @@ useEffect(() => {
   .then(res => res.json())
   .then(json => {
     setProducts(json || [])
+    setDbProducts(json || [])
     setLoading(false);
   });
 }, []);
 
-const deleteProduct = (index)=> {
-   products.splice(index,1)
-   setProducts(products.slice())
+const deleteProduct = (product)=> {
+  const index = dbProducts.findIndex(element => element.id === product.id);
+  dbProducts.splice(index,1);
+   setDbProducts(dbProducts.slice());
+   setProducts(dbProducts.slice());
+   searchFromProducts();
+   fetch(config.productsDbUrl,  {"method": "PUT","body":JSON.stringify(dbProducts)});
 }
 
 const searchFromProducts = () => {
-  const result = products.filter(element => 
+  const result = dbProducts.filter(element => 
     element.name.includes(searchedRef.current.value));
   setProducts(result);
 }
-if (products.length === 0 ) {       //products.length === 0 oli ennem loading true
+/* if (products.length === 0 ) {       //products.length === 0 oli ennem loading true
   return (
   <div>
   <div>Loading...</div>
   <img className='loading' src="/process.png" alt="Loading Icon" />
   </div>
   )
-}
+} */
 if (loading === true) {       
   return (
     <div>
     <div>Loading...</div>
-    <img className='loading' src="/container-truck.png" alt="Loading Icon" />
+    <img className='loading' src="/container-truck.png" alt="" />
     </div>
     )
 }
@@ -52,6 +60,7 @@ if (loading === true) {
     <div>
       <input onChange={searchFromProducts} ref={searchedRef} type="text" />
       <span>{products.length} pcs</span> <br />
+      <SortButtons products={products} setProducts={setProducts} />
       <tabel>
         <thead>
           <tr>
@@ -75,7 +84,7 @@ if (loading === true) {
          <td>{product.name} </td>
          <td>{product.category} </td>
           <td>
-          <Button onClick={() => deleteProduct(index)} variant="danger">Delete</Button>
+          <Button onClick={() => deleteProduct(product)} variant="danger">Delete</Button>
           <Button as={Link} to={"/admin/edit-product/" + product.id} variant="warning">Edit</Button>
           </td>
         </tr>
