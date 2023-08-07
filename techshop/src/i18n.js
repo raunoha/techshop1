@@ -20,7 +20,7 @@ const resources = {
        "Registreeru":"Sign up",
        "Maksa":"BUY",
        "Kõik poed":"All shops",
-       
+      
     }
   },
   ee: {
@@ -72,7 +72,7 @@ const resources = {
        'There is':"Ostukorvis on",
        'item in the cart':"toodet",
        "Deleted!":"Kustutatud",
-       
+       "Feel free to reach out to us with any questions, comments, or feedback. We'll get back to you as soon as possible!":"Kõigi küsimuste korral võtke meiega julgelt ühendust,kommentaare või tagasisidet. Võtame teiega esimesel võimalusel ühendust!",
        
 
     }

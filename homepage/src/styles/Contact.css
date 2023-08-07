@@ -1,0 +1,47 @@
+.contact-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 45vh; 
+  }
+  
+  .centered-form {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .big-label {
+    font-size: 20px; /* Adjust the font size as needed */
+    margin-bottom: 10px; /* Add spacing between labels and inputs */
+  }
+  .big-input {
+    font-size: 16px; /* Adjust the font size as needed */
+    padding: 10px; /* Add padding to make the inputs bigger */
+    width: 100%; /* Ensure the input fields expand to the full width */
+    margin-bottom: 10px; /* Add spacing between inputs */
+  }
+  .big-textarea {
+    font-size: 16px; /* Adjust the font size as needed */
+    padding: 10px; /* Add padding to make the textarea bigger */
+    width: 100%; /* Ensure the textarea expands to the full width */
+    resize: vertical; /* Allow vertical resizing of the textarea */
+    margin-bottom: 10px;
+  }
+  
+  .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .contact-container {
+      justify-content: flex-end; 
+    }
+  }
+  

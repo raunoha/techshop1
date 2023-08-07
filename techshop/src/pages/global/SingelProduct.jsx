@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import config from "../../data/config.json";
 import { Spinner } from 'react-bootstrap';
+import { Button } from '@mui/material';
 
 function SingelProduct() {
   const { id } = useParams();
@@ -61,7 +62,7 @@ function SingelProduct() {
       <div>Description: {result.description}</div>
       <img  src={result.image} alt=""  /> 
       <br /> <br />
-      <button onClick={() => addToCart(result)}>{t('Add to cart')}</button>
+      <Button variant="outlined" onClick={() => addToCart(result)}>{t('Add to cart')}</Button>
       <ToastContainer />
       </div>}
     </div>

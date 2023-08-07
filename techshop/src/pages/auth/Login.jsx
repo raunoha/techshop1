@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from 'react'
 import { AuthContext } from '../../store/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { Button } from '@mui/material';
 
 function Login() {
   const { setLoggedIn } = useContext(AuthContext);
@@ -39,11 +40,11 @@ function Login() {
   return (
     <div>
        <div>{message}</div>
-<label>Email</label> <br />
-<input ref={emailRef} type="text" /> <br />
-<label>Password</label> <br />
-<input ref={passwordRef} type="text" /> <br />
-<button onClick={login}>Log in </button> <br />
+      <label>Email</label> <br />
+      <input ref={emailRef} type="text" /> <br />
+      <label>Password</label> <br />
+      <input ref={passwordRef} type="text" /> <br />
+      <Button variant="text" onClick={login}>Log in </Button> <br />
     </div>
   )
 }

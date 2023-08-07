@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 
@@ -21,10 +22,10 @@ function SortButtons(props) {
       } 
   return (
     <div>
-         <button onClick= {AZ}>{t('Sort A-Z')}</button>
-      <button onClick= {ZA}>{t('Sort Z-A')}</button>
-      <button onClick= {sortPriceAsc}>{t('Price Ascending')}</button>
-      <button onClick= {sortPriceDesc}>{t('Price Descending')}</button>
+         <Button variant="outlined" onClick= {AZ}>{t('Sort A-Z')}</Button>
+         <Button variant="outlined" onClick= {ZA}>{t('Sort Z-A')}</Button>
+         <Button variant="outlined" onClick= {sortPriceAsc}>{t('Price Ascending')}</Button>
+         <Button variant="outlined" onClick= {sortPriceDesc}>{t('Price Descending')}</Button>
     </div>
   )
 }

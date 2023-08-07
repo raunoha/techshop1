@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import config from "../../data/config.json";
 import SortButtons from '../../home/SortButtons';
 import { CartSumContext } from '../../store/CartSumContext';
+import { Button } from "@mui/material";
 
 
 function HomePage() {
@@ -67,7 +68,7 @@ if (loading === true) {
   return (
   <div>
   <div>Loading...</div>
-  <img className='loading' src="/work-in-progress.png" alt="Loading Icon" />
+  <img className='loading' src="/container-truck.png" alt="Loading Icon" />
   </div>
   )
 }
@@ -76,7 +77,7 @@ if (loading === true) {
      <SortButtons 
      products={products}
      setProducts={setProducts}
-     />
+     /> 
       {/* <button onClick= {() => filterByCategory("smartphones") }>{t('Category Smartphones')}</button>
       <button onClick= {() => filterByCategory("laptops")  }>{t('Category Laptops')}</button>
       <button onClick= {() => filterByCategory("memory bank") }>{t('Category Memory bank')}</button>
@@ -84,10 +85,10 @@ if (loading === true) {
       <button onClick= {() => filterByCategory("usb drive") }>{t('Category Usb drive')}</button>
       <button onClick= {() => filterByCategory("robot vacuum") }>{t('Category Robot vacuum')}</button>*/}
   
-    <button onClick= {filterByCategoryOthers}>{t('Category Others')}</button> 
+    <Button variant="outlined" onClick= {filterByCategoryOthers}>{t('Category Others')}</Button> 
     {categories.map(category =>
-    <button key={category.name} onClick= {() => filterByCategory(category.name) }>
-    {category.name}</button>
+    <Button variant="outlined" key={category.name} onClick= {() => filterByCategory(category.name) }>
+    {category.name}</Button>
     )}
      <div>{products.length} pcs</div>
       <div className={styles.products}>
@@ -97,8 +98,8 @@ if (loading === true) {
           <img src={product.image} alt="" />
            <div className={styles.name}>{product.name} </div>          
           <div>{product.price} €</div>   
-          </Link>       
-          <button onClick={() => add(product) }>{t("Add to cart")}</button>
+          </Link>    
+          <Button variant="outlined" onClick={() => add(product) }>{t("Add to cart")}</Button>
       </div>
         ))}
     </div>

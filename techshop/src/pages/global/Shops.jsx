@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Map from '../../components/Map';
 import config from "../../data/config.json"
 import { useTranslation } from 'react-i18next';
+import { Button } from '@mui/material';
 
 
 function Shops() {
@@ -18,8 +19,8 @@ function Shops() {
 
   return (
     <div>
-      <button onClick={() => setCoordinates({lngLat: [58.9332, 25.0302], zoom: 7})}>{t("Kõik poed")}</button>
-<div>{shops.map(item => <div key={item.name}> <button onClick={()  => setCoordinates({lngLat: [item.lat, item.lng], zoom: 13})}>{item.name}</button> </div> )} 
+      <Button variant="text" onClick={() => setCoordinates({lngLat: [58.9332, 25.0302], zoom: 7})}>{t("Kõik poed")}</Button>
+<div>{shops.map(item => <div key={item.name}> <Button variant="text" onClick={()  => setCoordinates({lngLat: [item.lat, item.lng], zoom: 13})}>{item.name}</Button> </div> )} 
 
    {/* <button onClick={() => setCoordinates({lngLat: [58.9332, 25.0302], zoom: 7})}>Kõik poed</button>
     <button onClick={() => setCoordinates({ lngLat: [59.5050, 24.8266], zoom: 11 })}>Tallinna pood</button> */}

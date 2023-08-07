@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 
@@ -28,7 +29,7 @@ const pay = () => {
 
 
   return (
-    <button onClick={pay}>{t("Maksa")}</button>  
+    <Button variant="text" onClick={pay}>{t("Maksa")}</Button>  
   )
 }
 

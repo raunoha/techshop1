@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { useTranslation } from 'react-i18next';
 
 export const ContactUs = () => {
   const form = useRef();
+  const { t } = useTranslation();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -26,9 +28,8 @@ export const ContactUs = () => {
       <input type="phone" name="from_phone" /><br />
       <label>Message</label><br />
       <textarea name="message" /><br />
-      <p>Feel free to reach out to us with any questions,
-         comments, or feedback. We'll get back to you as soon as possible!</p>
-      <input type="submit" value="Send" /><br />
+      <p>{t("Feel free to reach out to us with any questions, comments, or feedback. We'll get back to you as soon as possible!")}</p>
+      <input type="submit" value="Send" /><br /> 
     </form>
   );
 };

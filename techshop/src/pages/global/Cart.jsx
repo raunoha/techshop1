@@ -7,6 +7,7 @@ import styles from "../../css/Cart.module.css";
 import { CartSumContext } from '../../store/CartSumContext';
 import { ToastContainer, toast } from 'react-toastify';
 import Payment from '../../components/cart/Payment';
+import { Button } from '@mui/material';
 
 
 
@@ -75,7 +76,7 @@ setParcelMachine(result);
 
   return (
     <div>
-      {cart.length !== 0 && <button onClick={emptyCart}>{t('Empty cart')}</button>}
+      {cart.length !== 0 && <Button variant="text" onClick={emptyCart}>{t('Empty cart')}</Button>}
       {cart.length === 1 && (
       <div>
         {t('There is')} 1  {t('item in the cart')}.
@@ -121,7 +122,8 @@ setParcelMachine(result);
       {cart.length === 0 && (
       <div>
         {t('Shopping cart is empty')}.  
-      <Link to="/homepage/">{t('Add products')}</Link> {" "}
+      <Link to="/homepage/"><br />
+        {t('Add products')}</Link> {" "}
       <br />
        <div className='shoppingcart3-con'>
         <img src="shopping-cart (3).png" alt=""  /></div>

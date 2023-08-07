@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from 'react'
 import { AuthContext } from '../../store/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { Button } from '@mui/material';
 
 function Signup() {
 const { setLoggedIn } = useContext(AuthContext);
@@ -23,7 +24,7 @@ const signup = () => {
       setMessage(json.error.message);    //"parool on vale"
         } else {
           setLoggedIn(true);
-          navigate("/admin"); 
+          navigate("/admin");   //"/admin"
           sessionStorage.setItem("token", json.idToken)
         }
   })
@@ -36,7 +37,7 @@ const signup = () => {
 <input ref={emailRef} type="text" /> <br />
 <label>Password</label> <br />
 <input ref={passwordRef} type="text" /> <br />
-<button onClick={signup}>Sign up</button> <br />
+<Button variant="text" onClick={signup}>Sign up</Button> <br />
     </div>
   )
 }
