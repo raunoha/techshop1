@@ -7,6 +7,7 @@ import "../styles/ProjectDisplay.css";
 function ProjectDisplay() {
   const { id } = useParams();
   const project = ProjectList[id];
+  const gitProfileUrl = 'https://github.com/';
   
   return (
     <div className="project">
@@ -15,7 +16,9 @@ function ProjectDisplay() {
       <p>
         <b>Skills:</b> {project.skills}
       </p>
-      <GitHubIcon />
+      <a href={gitProfileUrl } target="_blank" rel="noopener noreferrer">
+        <GitHubIcon />
+        </a>
     </div>
   );
 }

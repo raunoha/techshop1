@@ -6,9 +6,18 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import SchoolIcon from '@mui/icons-material/School';
 import WorkIcon from '@mui/icons-material/Work';
+import "../styles/About.css"
+import "../styles/Footer.css"
 
 function About() {
   return (
+    <div >
+      <div className="text-box">
+      <p>Introduce myself and whats my goal and purpose...dfghjklöhjkjdhajkssdaskljldjaskldklashdhasdhjahjsdhjhadhjadhksa
+        asjdnjkasndjknajksdnjkansdkasdadadsasdadasdasdasdasdasdasdasdasdasdasddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        aaaaaaaaaaaaaaaaaaa
+      </p>
+      </div> 
     <div className="experience">
       <VerticalTimeline lineColor="#3e497a">
         <VerticalTimelineElement
@@ -144,13 +153,14 @@ program, and using Microsoft Office (Word and Excel) programs in daily work.</p>
             Unemployed, new challenges
           </h3>
           <h4 className="vertical-timeline-element-subtitle">
-            
-          </h4>
+         </h4>
           <p>
             Starting to learn Javascript and React front end development.
+            jasjjldkjal
           </p>
         </VerticalTimelineElement>
-      </VerticalTimeline>
+        </VerticalTimeline>
+    </div>
     </div>
   );
 }
