@@ -38,7 +38,7 @@ function Homepage() {
             <h2> Front-End</h2>
             <span>
               ReactJS, HTML, CSS, i18n,
-              Ionic, BootStrap, MaterialUI, NPM, TailwindCSS, StyledComponents
+               BootStrap, MaterialUI, NPM, TailwindCSS, EveryPay
             </span>
           </li>
           <li className="item">
@@ -46,7 +46,7 @@ function Homepage() {
             <span>
               NodeJS, Java Spring, .NET, ExpressJS, GraphQL, ApolloServer,
               MySQL, MongoDB, DynamoDB, DigitalOcean, AWS S3, MS SQL
-  </span> */ }
+  </span>   Ionic,appide tegemiseks*/ }
           </li>
           <li className="item">
             <h2>Languages</h2>

@@ -31,7 +31,7 @@ export const Contact = () => {
     </form>
     <br />
     
-    Küsimuste korral julgelt ühendust võtta!!! 
+    Feel free to contact me if you have any questions!!!
     
     
     </div>

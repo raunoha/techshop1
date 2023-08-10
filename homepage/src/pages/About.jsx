@@ -13,9 +13,12 @@ function About() {
   return (
     <div >
       <div className="text-box">
-      <p>Introduce myself and whats my goal and purpose...dfghjklöhjkjdhajkssdaskljldjaskldklashdhasdhjahjsdhjhadhjadhksa
-        asjdnjkasndjknajksdnjkansdkasdadadsasdadasdasdasdasdasdasdasdasdasdasddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        aaaaaaaaaaaaaaaaaaa
+      <p>I am a hardworking person with a positive attitude, and I have extensive work experience ranging from the military to printing houses.
+         I am athletic and a fast learner, adapting well to various situations. I do not limit myself to any specific field for my next challenge, as long as it is related to web development.
+         Recently, I completed a 12-week course in practical JavaScript and React frontend development. 
+         It is important to me that my work brings value to the company and allows for career growth over time. 
+         I am ready for entirely new challenges and retraining if necessary.
+         I value teamwork, but I am also capable of successfully handling individual tasks.
       </p>
       </div> 
     <div className="experience">
@@ -156,7 +159,7 @@ program, and using Microsoft Office (Word and Excel) programs in daily work.</p>
          </h4>
           <p>
             Starting to learn Javascript and React front end development.
-            jasjjldkjal
+            
           </p>
         </VerticalTimelineElement>
         </VerticalTimeline>

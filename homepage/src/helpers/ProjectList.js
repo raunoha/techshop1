@@ -1,23 +1,26 @@
-import Proj1 from "../assets/proj1.jpg";
-import Proj2 from "../assets/proj2.jpg";
-import Proj3 from "../assets/proj3.webp";
+import Proj1 from "../assets/proj1.jpg.PNG";
+import Proj2 from "../assets/proj2.jpg.PNG";
+import Proj3 from "../assets/proj3.webp.PNG";
 import Proj4 from "../assets/proj4.webp";
 
 export const ProjectList = [
   {
-    name: "Dijkstra Algorithm Visualizer",
+    name: "Pizza Ordering Website",
     image: Proj1,
     skills: "JavaScript,HTML,CSS",
+    gitProfileUrl:'https://github.com/raunoha/React-06-23',
   },
   {
-    name: "Ecommerce Website",
+    name: "E-shop Website",
     image: Proj2,
-    skills: "React,Node.js,MongoDB",
+    skills: "React,HTML,CSS",
+    gitProfileUrl:"https://github.com/raunoha/techshop1"
   },
   {
-    name: "Spotify Clone",
+    name: "Portfolio Website",
     image: Proj3,
-    skills: "React,Node.js,MongoDB,SpotifyAPI",
+    skills: "React,HTML,CSS",
+    gitProfileUrl:'https://github.com/raunoha/techshop1/tree/main/homepage',
   },
   {
     name: "Upcoming projects",

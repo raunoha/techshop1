@@ -7,7 +7,7 @@
   
   .about {
     width: 100%;
-    height: calc(100vh - 100px);
+    height: auto; /*calc(100vh - 100px) */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,6 +15,7 @@
     text-align: center;
     background-color: #21325e;
     color: #f0f0f0;
+    
   }
   
   .about h2 {

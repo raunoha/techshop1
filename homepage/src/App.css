@@ -16,15 +16,16 @@ body {
 }
 
 .frontpic {
-  width: 150px;
-  height: 150px;
+  width: 15vw; /* Relative width based on viewport width */
+  height: 15vw;
   border-radius: 15px;
   
 }
 
 @media (max-width: 700px) {
   .frontpic {
-    min-height:30vh;
+    width: 30vw; /* Adjust width for smaller screens */
+    height: 30vw;
   }
 }
 
