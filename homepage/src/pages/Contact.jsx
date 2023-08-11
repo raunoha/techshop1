@@ -27,7 +27,7 @@ export const Contact = () => {
       <input type="email" name="from_email" className="big-input"  /><br />
       <label className="big-label">Message</label><br />
       <textarea name="message" className="big-textarea" rows="6"/><br /><br />
-      <input type="submit" value="Send"className="send"  /><br />
+      <input type="submit" value="Send" className="send"  /><br />
     </form>
     <br />
     
