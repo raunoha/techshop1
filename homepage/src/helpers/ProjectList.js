@@ -1,7 +1,7 @@
 import Proj1 from "../assets/proj1.jpg.PNG";
 import Proj2 from "../assets/proj2.jpg.PNG";
 import Proj3 from "../assets/proj3.webp.PNG";
-import Proj4 from "../assets/proj4.webp";
+import Proj4 from "../assets/proj4.webp_forest.jpg";
 
 export const ProjectList = [
   {

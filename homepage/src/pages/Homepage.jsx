@@ -38,7 +38,7 @@ function Homepage() {
             <h2> Front-End</h2>
             <span>
               ReactJS, HTML, CSS, i18n,
-               BootStrap, MaterialUI, NPM, TailwindCSS, EveryPay
+               BootStrap, MaterialUI, NPM, EveryPay
             </span>
           </li>
           <li className="item">
