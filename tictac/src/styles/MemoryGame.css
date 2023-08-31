@@ -1,0 +1,12 @@
+.memory-game {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 80px); /* Adjust column count and size */
+    gap: 10px;
+    justify-content: center;
+  }
+  
